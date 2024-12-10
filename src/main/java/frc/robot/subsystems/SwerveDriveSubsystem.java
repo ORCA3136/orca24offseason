@@ -7,9 +7,12 @@ package frc.robot.subsystems;
 import java.io.File;
 import java.util.function.DoubleSupplier;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -122,4 +125,32 @@ public class SwerveDriveSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+
+  public void zeroGyro()
+  {
+    swerveDrive.zeroGyro();
+  }
+
+  private boolean isRedAlliance()
+  {
+    var alliance = DriverStation.getAlliance();
+    return alliance.isPresent() ? alliance.get() == DriverStation.Alliance.Red : false;
+  }
+
+  /*
+  public void zeroGyroWithAlliance()
+  {
+    if (isRedAlliance())
+    {
+      zeroGyro();
+      //Set the pose 180 degrees
+      resetOdometry(new Pose2d(getPose().getTranslation(), Rotation2d.fromDegrees(180)));
+    } else
+    {
+      zeroGyro();
+    }
+  }
+  */
+
 }
+

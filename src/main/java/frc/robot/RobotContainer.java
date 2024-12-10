@@ -79,8 +79,9 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    //driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
+    driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
       //driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
+     
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
   }
 
